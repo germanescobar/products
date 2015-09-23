@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1><%= @product.new_record? ? "Nuevo Producto" : "Editar Producto" %></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for @product do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre del producto" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :price, class: "form-control input-lg", placeholder: "Precio del producto" %>
+        </div>
+        
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name  do |c| %>
+          <div class="checkbox">
+            <%= c.label do %>
+              <%= c.check_box %> <%= c.object.name %>
+            <% end %>
+          </div>
+        <% end %>
+        <div>
+          <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

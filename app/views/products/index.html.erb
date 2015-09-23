@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Categorías</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= number_to_currency(product.price, precision: 2) %></td>
+        <td><%= product.categories.pluck(:name).join(", ") %></td>
+        <td>
+          <%= link_to "Editar", edit_product_path(product) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
